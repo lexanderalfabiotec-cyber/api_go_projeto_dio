@@ -1,46 +1,40 @@
-# Conversor de escalas de temperatura
+# Desafios de lógica em Go
 
-Este projeto demonstra como converter temperaturas entre as escalas Celsius,
-Kelvin e Fahrenheit usando funções em Go.
+Projeto com duas soluções clássicas de lógica de programação: números divisíveis por 3 e a brincadeira PinPan (FizzBuzz).
 
-## Conversões disponíveis
-
-O programa possui uma função para cada conversão possível:
-
-- Celsius para Kelvin: `K = C + 273`
-- Kelvin para Celsius: `C = K - 273`
-- Celsius para Fahrenheit: `F = (C × 9 / 5) + 32`
-- Fahrenheit para Celsius: `C = (F - 32) × 5 / 9`
-- Kelvin para Fahrenheit: primeiro converte para Celsius e depois para Fahrenheit
-- Fahrenheit para Kelvin: primeiro converte para Celsius e depois para Kelvin
-
-## Demonstração
-
-Ao executar o programa, são demonstradas todas as conversões usando valores
-equivalentes a 25 °C, 298 K e 77 °F:
+## Estrutura
 
 ```text
-Conversões de temperatura
-
-25.00 °C = 298.00 K
-25.00 °C = 77.00 °F
-298.00 K = 25.00 °C
-298.00 K = 77.00 °F
-77.00 °F = 25.00 °C
-77.00 °F = 298.00 K
+.
+├── desafio1/
+│   ├── divisiveis.go
+│   └── divisiveis_test.go
+├── desafio2/
+│   ├── pinpan.go
+│   └── pinpan_test.go
+├── go.mod
+└── main.go
 ```
 
 ## Como executar
 
-É necessário ter o Go instalado. No terminal, dentro da pasta do projeto,
-execute:
+Na raiz do projeto, execute:
 
-```bash
-go run main.go
+```sh
+go run .
 ```
 
-## Observação
+O programa lista os números divisíveis por 3 entre 1 e 100 e, em seguida, exibe o resultado de PinPan para cada número entre 1 e 100.
 
-Neste exercício foi utilizada a aproximação `273` para a conversão entre
-Celsius e Kelvin, conforme a fórmula proposta no enunciado. Em aplicações
-científicas, normalmente utiliza-se `273.15`.
+## Soluções
+
+- `desafio1.ObterDivisiveisPorTres(inicio, fim)` retorna os divisíveis por 3 em um intervalo inclusivo. Um intervalo invertido produz uma fatia vazia.
+- `desafio2.ConverterNumero(n)` retorna `PinPan` para múltiplos de 3 e 5, `Pin` para múltiplos de 3, `Pan` para múltiplos de 5 e o número como texto nos demais casos.
+
+## Testes automatizados
+
+Execute os testes de todos os pacotes com:
+
+```sh
+go test ./...
+```
