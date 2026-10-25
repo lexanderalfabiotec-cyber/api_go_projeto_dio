@@ -1,0 +1,9 @@
+server:
+  port: "8000"
+
+log:
+  level: "info"
+
+app:
+  name: "contatos-api"
+  version: "1.0.0"
