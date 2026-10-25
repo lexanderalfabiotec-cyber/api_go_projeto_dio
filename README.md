@@ -1,40 +1,48 @@
-# Desafios de lógica em Go
+# Desafios de lógica e concorrência em Go
 
-Projeto com duas soluções clássicas de lógica de programação: números divisíveis por 3 e a brincadeira PinPan (FizzBuzz).
+Este projeto reúne os desafios de lógica e o exemplo de concorrência desenvolvido em Go.
 
-## Estrutura
+## Ping-pong com goroutines e canais
+
+O programa principal demonstra concorrência com duas goroutines: uma produz `ping` e a outra produz `pong`. Canais sem buffer fazem a passagem de turno e garantem a alternância determinística:
 
 ```text
-.
-├── desafio1/
-│   ├── divisiveis.go
-│   └── divisiveis_test.go
-├── desafio2/
-│   ├── pinpan.go
-│   └── pinpan_test.go
-├── go.mod
-└── main.go
+ping
+pong
+ping
+pong
+...
 ```
 
-## Como executar
+## Executar
 
-Na raiz do projeto, execute:
+Na raiz do projeto:
 
 ```sh
 go run .
 ```
 
-O programa lista os números divisíveis por 3 entre 1 e 100 e, em seguida, exibe o resultado de PinPan para cada número entre 1 e 100.
+O programa principal imprime cinco pares. A quantidade pode ser alterada no argumento de `pingpong.GerarSequencia` em [main.go](./main.go).
 
-## Soluções
+## Testar
 
-- `desafio1.ObterDivisiveisPorTres(inicio, fim)` retorna os divisíveis por 3 em um intervalo inclusivo. Um intervalo invertido produz uma fatia vazia.
-- `desafio2.ConverterNumero(n)` retorna `PinPan` para múltiplos de 3 e 5, `Pin` para múltiplos de 3, `Pan` para múltiplos de 5 e o número como texto nos demais casos.
-
-## Testes automatizados
-
-Execute os testes de todos os pacotes com:
+Execute os testes automatizados com:
 
 ```sh
 go test ./...
 ```
+
+Os testes verificam a ordem dos pares e o comportamento para quantidades não positivas.
+
+## Desafios de lógica
+
+- `desafio1.ObterDivisiveisPorTres(inicio, fim)` retorna os divisíveis por 3 em um intervalo inclusivo.
+- `desafio2.ConverterNumero(n)` retorna `PinPan` para múltiplos de 3 e 5, `Pin` para múltiplos de 3, `Pan` para múltiplos de 5 e o número como texto nos demais casos.
+
+Os testes dos desafios de lógica também são executados por `go test ./...`.
+
+## Como funciona
+
+- A goroutine de `ping` aguarda um sinal em `pingTurn`, envia a palavra e libera `pongTurn`.
+- A goroutine de `pong` aguarda `pongTurn`, envia a palavra e libera `pingTurn` enquanto ainda houver pares.
+- A função coleta exatamente `2 * pares` mensagens e retorna a sequência para o chamador.
