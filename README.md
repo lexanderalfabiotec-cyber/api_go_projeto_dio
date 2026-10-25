@@ -1,40 +1,28 @@
-# Desafios de lógica em Go
+# Calculadora em Go
 
-Projeto com duas soluções clássicas de lógica de programação: números divisíveis por 3 e a brincadeira PinPan (FizzBuzz).
+Projeto simples de calculadora com as operações básicas de soma, subtração,
+multiplicação e divisão.
 
-## Estrutura
+## Operações
 
-```text
-.
-├── desafio1/
-│   ├── divisiveis.go
-│   └── divisiveis_test.go
-├── desafio2/
-│   ├── pinpan.go
-│   └── pinpan_test.go
-├── go.mod
-└── main.go
-```
+- `Soma(a, b)`: retorna `a + b`.
+- `Subtrai(a, b)`: retorna `a - b`.
+- `Multiplica(a, b)`: retorna `a * b`.
+- `Divide(a, b)`: retorna `a / b` e um erro se `b` for zero.
 
-## Como executar
+Os argumentos e resultados usam `float64`, permitindo trabalhar com números
+inteiros e decimais.
+
+## Executar os testes
 
 Na raiz do projeto, execute:
 
 ```sh
-go run .
+go test ./...
 ```
 
-O programa lista os números divisíveis por 3 entre 1 e 100 e, em seguida, exibe o resultado de PinPan para cada número entre 1 e 100.
-
-## Soluções
-
-- `desafio1.ObterDivisiveisPorTres(inicio, fim)` retorna os divisíveis por 3 em um intervalo inclusivo. Um intervalo invertido produz uma fatia vazia.
-- `desafio2.ConverterNumero(n)` retorna `PinPan` para múltiplos de 3 e 5, `Pin` para múltiplos de 3, `Pan` para múltiplos de 5 e o número como texto nos demais casos.
-
-## Testes automatizados
-
-Execute os testes de todos os pacotes com:
+Para ver também cada teste executado:
 
 ```sh
-go test ./...
+go test -v ./...
 ```

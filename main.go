@@ -1,20 +1,28 @@
 package main
 
-import (
-	"fmt"
+import "errors"
 
-	"github.com/lexanderalfabiotec-cyber/go_projeto_dio/desafio1"
-	"github.com/lexanderalfabiotec-cyber/go_projeto_dio/desafio2"
-)
-
-func main() {
-	fmt.Println("Desafio 1 — números divisíveis por 3:")
-	for _, numero := range desafio1.ObterDivisiveisPorTres(1, 100) {
-		fmt.Println(numero)
-	}
-
-	fmt.Println("\nDesafio 2 — PinPan:")
-	for numero := 1; numero <= 100; numero++ {
-		fmt.Println(desafio2.ConverterNumero(numero))
-	}
+// Soma retorna a soma de dois números.
+func Soma(a, b float64) float64 {
+	return a + b
 }
+
+// Subtrai retorna a diferença entre dois números.
+func Subtrai(a, b float64) float64 {
+	return a - b
+}
+
+// Multiplica retorna o produto de dois números.
+func Multiplica(a, b float64) float64 {
+	return a * b
+}
+
+// Divide retorna a divisão de a por b ou um erro se b for zero.
+func Divide(a, b float64) (float64, error) {
+	if b == 0 {
+		return 0, errors.New("divisão por zero")
+	}
+	return a / b, nil
+}
+
+func main() {}
