@@ -32,7 +32,8 @@ type Config struct {
 // Caso o arquivo não exista ou algum campo esteja vazio, utiliza
 // variáveis de ambiente como fallback e, por último, valores padrão.
 func Load() (*Config, error) {
-	yc, err := loadYAML("config.yml")
+	path := getEnv("CONFIG_PATH", "config.yml")
+	yc, err := loadYAML(path)
 	if err != nil {
 		// Se não conseguir abrir o arquivo, continua com struct vazia
 		yc = &yamlConfig{}
